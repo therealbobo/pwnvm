@@ -1,0 +1,71 @@
+---
+- hosts: all
+  become: true
+  become_user: root
+  tasks:
+    - name: Set a hostname
+      ansible.builtin.hostname:
+        name: pwnvm
+
+    - name: apt update
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    - name: install packages
+      apt:
+        pkg:
+          - git
+          - vim
+          - gdb
+          - python3
+          - python3-pip
+          - tmux
+          - nasm
+          - python3-dev
+          - libssl-dev
+          - libffi-dev
+          - build-essential
+          - socat
+
+    - name: upgrade pip
+      pip: 
+        name: pip
+        extra_args: --upgrade
+
+    - name: install pwntools
+      pip: 
+        name: pwntools
+        extra_args: --upgrade
+
+    - name: Download radare2 
+      git:
+        repo: https://github.com/radare/radare2.git
+        dest: /opt/radare2
+
+    - name: Install radare2
+      command: sys/install.sh
+      args:
+        chdir: /opt/radare2
+
+
+    - name: Download peda
+      git:
+        repo: https://github.com/longld/peda.git
+        dest: /opt/peda
+
+    - name: Install peda
+      command: echo "source /opt/peda/peda.py" >> /home/vagrant/.gdbinit
+
+    - name: delete motd files
+      find:
+        paths: /etc/update-motd.d/
+        patterns: '*'
+      register: files_to_delete
+
+    - name: copy banner
+      copy:
+        src: ./00-banner
+        dest: /etc/update-motd.d/
+        force: yes
+        mode: +x
