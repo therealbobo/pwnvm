@@ -43,7 +43,7 @@ Or you can built it yourself:
 | tmux     | Utility  |
 | nasm     | Compile  |
 | socat    | Utility  |
-| pwntolls | Utility  |
+| pwntools | Utility  |
 | peda     | Debug    |
 | radare2  | Reverse  |
 
