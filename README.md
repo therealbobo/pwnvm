@@ -45,5 +45,6 @@ Or you can built it yourself:
 | socat    | Utility  |
 | pwntools | Utility  |
 | peda     | Debug    |
+| gef      | Debug    |
 | radare2  | Reverse  |
 

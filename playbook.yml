@@ -57,6 +57,11 @@
     - name: Install peda
       command: echo "source /opt/peda/peda.py" >> /home/vagrant/.gdbinit
 
+    - name: Download gef
+      get_url:
+        url: https://raw.githubusercontent.com/hugsy/gef/master/gef.py
+        dest: /opt/gef.py
+
     - name: delete motd files
       find:
         paths: /etc/update-motd.d/
