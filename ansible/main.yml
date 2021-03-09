@@ -9,7 +9,7 @@
 
     - name: apt update
       apt:
-        upgrade: yes
+        upgrade: "yes"
         update_cache: yes
 
     - name: remove unwanted packages
