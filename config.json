@@ -1,0 +1,31 @@
+{
+  "builders": [
+    {
+      "communicator": "ssh",
+      "source_path": "ubuntu/bionic64",
+      "provider": "virtualbox",
+      "add_force": true,
+      "type": "vagrant",
+	  "template": "./vagrantfile.template"
+    }
+  ],
+  "provisioners": [
+	{
+		"type": "ansible",
+		"playbook_file": "./ansible/main.yml"
+	}
+  ],
+  "post-processors":
+	  [
+		  {
+			"type": "artifice",
+			"files": ["./output-vagrant/package.box"]
+		  },
+		  {
+			"type": "vagrant-cloud",
+			"box_tag": "therealbobo/pwnvm",
+			"access_token": "{{user `cloud_token`}}",
+			"version": "0.0.2"
+		  }
+	  ]
+}

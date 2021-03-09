@@ -1,4 +1,5 @@
-.token
 *.log
 *.box
 .vagrant
+private_vars.json
+output-vagrant/
