@@ -48,5 +48,6 @@ Or you can built it yourself (you'll need packer):
 | socat    | Utility  |
 | pwntools | Utility  |
 | peda     | Debug    |
+| gef      | Debug    |
 | radare2  | Reverse  |
 
