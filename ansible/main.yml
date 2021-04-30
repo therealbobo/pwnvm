@@ -34,6 +34,8 @@
           - libffi-dev
           - build-essential
           - socat
+          - ruby
+          - gcc
 
     - name: upgrade pip
       pip: 
@@ -46,15 +48,26 @@
         extra_args: --upgrade
 
     - name: Download radare2 
+      become: true
+      become_user: vagrant
       git:
         repo: https://github.com/radare/radare2.git
-        dest: /opt/radare2
+        dest: /home/vagrant/.radare2
 
     - name: Install radare2
-      command: sys/install.sh
+      shell: sys/install.sh
       args:
-        chdir: /opt/radare2
+        chdir: /home/vagrant/.radare2
 
+    - name: update r2pm
+      become: true
+      become_user: vagrant
+      command: r2pm update
+
+    - name: install r2ghidra
+      become: true
+      become_user: vagrant
+      command: r2pm -ci r2ghidra
 
     - name: Download peda
       git:
@@ -87,3 +100,20 @@
         dest: /etc/update-motd.d/
         force: yes
         mode: +x
+
+    - name: copy tmux.conf
+      copy:
+        src: ./.tmux.conf
+        dest: /home/vagrant
+        force: yes
+
+    - name: install one_gadget
+      gem:
+        name: one_gadget
+        state: latest
+
+    - name: install ropper
+      pip: 
+        name: ropper
+        extra_args: --upgrade
+

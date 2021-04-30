@@ -25,7 +25,7 @@
 			"type": "vagrant-cloud",
 			"box_tag": "therealbobo/pwnvm",
 			"access_token": "{{user `cloud_token`}}",
-			"version": "0.0.2"
+			"version": "0.0.3"
 		  }
 	  ]
 }

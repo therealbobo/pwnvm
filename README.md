@@ -40,14 +40,16 @@ Or you can built it yourself (you'll need packer):
 
 ## What's included?
 
-| Name     | Category |
-|----------|----------|
-| gdb      | Debug    |
-| tmux     | Utility  |
-| nasm     | Compile  |
-| socat    | Utility  |
-| pwntools | Utility  |
-| peda     | Debug    |
-| gef      | Debug    |
-| radare2  | Reverse  |
-
+| Name       | Category |
+|------------|----------|
+| gdb        | Debug    |
+| tmux       | Utility  |
+| nasm       | Compile  |
+| socat      | Utility  |
+| pwntools   | Utility  |
+| peda       | Debug    |
+| gef        | Debug    |
+| radare2    | Reverse  |
+| r2ghidra   | Reverse  |
+| one_gadget | Utility  |
+| ropper     | Utility  |
